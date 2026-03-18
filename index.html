@@ -1,0 +1,2103 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CRAFTON チラシ</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue-deep: #0a0f2e;
+    --blue-mid:  #0d1a4a;
+    --blue-navy: #19448e;
+    --cyan:      #00d4ff;
+    --cyan-dim:  rgba(0,212,255,0.18);
+    --white:     #ffffff;
+    --gray:      rgba(255,255,255,0.65);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  html, body {
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  body {
+    min-height: 100vh;
+    background: #1a1a2e;
+    font-family: 'Noto Sans JP', sans-serif;
+  }
+
+  .flyer {
+    width: 100%;
+    max-width: 794px;
+    min-height: 100vh;
+    margin: 0 auto;
+    background: var(--blue-deep);
+    position: relative;
+    overflow: hidden;
+    color: var(--white);
+  }
+
+  /* ── animated grid ── */
+  .grid-bg {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(0,212,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,212,255,0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+    animation: gridScroll 25s linear infinite;
+    pointer-events: none;
+  }
+  @keyframes gridScroll {
+    0%   { background-position: 0 0; }
+    100% { background-position: 48px 48px; }
+  }
+
+  /* ── radial glows ── */
+  .glow-left {
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(ellipse, rgba(25,68,142,0.55) 0%, transparent 70%);
+    top: -150px; left: -200px;
+    pointer-events: none;
+  }
+  .glow-right {
+    position: absolute;
+    width: 500px; height: 500px;
+    background: radial-gradient(ellipse, rgba(0,212,255,0.12) 0%, transparent 70%);
+    top: 50px; right: -180px;
+    pointer-events: none;
+  }
+  .glow-bottom {
+    position: absolute;
+    width: 700px; height: 400px;
+    background: radial-gradient(ellipse, rgba(25,68,142,0.4) 0%, transparent 70%);
+    bottom: -100px; left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+
+  /* ── floating particles ── */
+  .particles { position: absolute; inset: 0; pointer-events: none; }
+  .dot {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--cyan);
+    animation: floatUp linear infinite;
+    opacity: 0;
+  }
+  @keyframes floatUp {
+    0%   { transform: translateY(100%) translateX(0); opacity: 0; }
+    10%  { opacity: 0.8; }
+    90%  { opacity: 0.5; }
+    100% { transform: translateY(-80px) translateX(30px); opacity: 0; }
+  }
+
+  /* ── top bar ── */
+  .top-bar {
+    position: relative; z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 36px;
+    border-bottom: 1px solid rgba(0,212,255,0.2);
+    background: rgba(10,15,46,0.6);
+    backdrop-filter: blur(8px);
+  }
+  .logo {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 900;
+    letter-spacing: 3px;
+    color: var(--cyan);
+  }
+  .logo span { color: var(--white); }
+  .badge {
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    color: var(--cyan);
+    border: 1px solid rgba(0,212,255,0.45);
+    padding: 4px 14px;
+    border-radius: 50px;
+    background: rgba(0,212,255,0.08);
+  }
+
+  /* ── hero ── */
+  .hero {
+    position: relative; z-index: 2;
+    text-align: center;
+    padding: 44px 36px 36px;
+  }
+  .hero-eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 4px;
+    color: var(--cyan);
+    margin-bottom: 14px;
+    opacity: 0.85;
+  }
+  .hero-title {
+    font-size: 3.6rem;
+    font-weight: 900;
+    line-height: 1.12;
+    margin-bottom: 10px;
+    text-shadow: 0 0 40px rgba(0,212,255,0.25);
+  }
+  .hero-title .line2 {
+    background: linear-gradient(135deg, var(--cyan) 0%, #6ec6ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.8rem;
+    letter-spacing: 6px;
+    display: block;
+    margin-top: 6px;
+  }
+  .hero-sub {
+    font-size: 0.88rem;
+    color: var(--gray);
+    line-height: 1.9;
+    margin-top: 14px;
+  }
+
+  /* ── catch copies ── */
+  .catches {
+    position: relative; z-index: 2;
+    display: flex;
+    gap: 10px;
+    padding: 0 36px 28px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .catch-chip {
+    background: rgba(0,212,255,0.1);
+    border: 1px solid rgba(0,212,255,0.35);
+    color: var(--cyan);
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 7px 18px;
+    border-radius: 50px;
+    letter-spacing: 0.5px;
+  }
+
+  /* ── divider ── */
+  .divider {
+    position: relative; z-index: 2;
+    margin: 0 36px 28px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0,212,255,0.4), transparent);
+  }
+
+  /* ── price hero ── */
+  .price-hero {
+    position: relative; z-index: 2;
+    text-align: center;
+    padding: 0 36px 28px;
+  }
+  .price-label {
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    color: var(--gray);
+    margin-bottom: 8px;
+  }
+  .price-main {
+    font-size: 4.5rem;
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1;
+  }
+  .price-main .yen {
+    font-size: 2rem;
+    vertical-align: super;
+    margin-right: 4px;
+    color: var(--cyan);
+  }
+  .price-main .per {
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--gray);
+    margin-left: 8px;
+  }
+  .price-note {
+    font-size: 0.8rem;
+    color: var(--cyan);
+    margin-top: 8px;
+    letter-spacing: 1px;
+  }
+
+  /* ── 3 points ── */
+  .points {
+    position: relative; z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    padding: 0 36px 28px;
+  }
+  .point-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(0,212,255,0.2);
+    border-radius: 10px;
+    padding: 18px 16px;
+    text-align: center;
+    transition: border-color 0.3s;
+  }
+  .point-icon {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: rgba(0,212,255,0.15);
+    border: 1px solid rgba(0,212,255,0.4);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 10px;
+    font-size: 1.1rem;
+  }
+  .point-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+  .point-body {
+    font-size: 0.72rem;
+    color: var(--gray);
+    line-height: 1.7;
+  }
+
+  /* ── plans table ── */
+  .plans-section {
+    position: relative; z-index: 2;
+    padding: 0 36px 28px;
+  }
+  .section-label {
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    color: var(--cyan);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(0,212,255,0.4), transparent);
+  }
+
+  .plans-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 12px;
+  }
+  .plan-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(0,212,255,0.2);
+    border-radius: 10px;
+    padding: 16px 18px;
+  }
+  .plan-card.featured {
+    border-color: rgba(0,212,255,0.6);
+    background: rgba(0,212,255,0.07);
+    position: relative;
+    overflow: hidden;
+  }
+  .plan-card.featured::before {
+    content: 'おすすめ';
+    position: absolute;
+    top: 10px; right: -20px;
+    background: var(--cyan);
+    color: #000;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 3px 28px;
+    letter-spacing: 1px;
+    transform: rotate(35deg);
+  }
+  .plan-name {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--cyan);
+    margin-bottom: 6px;
+    letter-spacing: 1px;
+  }
+  .plan-price {
+    font-size: 1.7rem;
+    font-weight: 900;
+    color: var(--white);
+    margin-bottom: 10px;
+  }
+  .plan-price small {
+    font-size: 0.75rem;
+    color: var(--gray);
+    font-weight: 400;
+  }
+  .plan-items {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .plan-items li {
+    font-size: 0.72rem;
+    color: var(--gray);
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    line-height: 1.5;
+  }
+  .plan-items li::before {
+    content: '✦';
+    color: var(--cyan);
+    font-size: 0.55rem;
+    margin-top: 3px;
+    flex-shrink: 0;
+  }
+
+  /* ── options ── */
+  .options-section {
+    position: relative; z-index: 2;
+    padding: 0 36px 28px;
+  }
+  .options-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+  .option-chip {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px;
+    padding: 12px 10px;
+    text-align: center;
+  }
+  .option-name {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 4px;
+    line-height: 1.4;
+  }
+  .option-price {
+    font-size: 0.68rem;
+    color: var(--cyan);
+  }
+
+  /* ── cases row ── */
+  .cases-section {
+    position: relative; z-index: 2;
+    padding: 0 36px 28px;
+  }
+  .cases-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .case-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(0,212,255,0.15);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .case-img {
+    width: 100%; height: 80px;
+    background: linear-gradient(135deg, rgba(25,68,142,0.6), rgba(0,212,255,0.15));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 2px;
+    border-bottom: 1px solid rgba(0,212,255,0.1);
+  }
+  .case-info {
+    padding: 10px 14px;
+  }
+  .case-title {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 3px;
+  }
+  .case-desc {
+    font-size: 0.68rem;
+    color: var(--gray);
+    line-height: 1.5;
+  }
+
+  /* ── bottom CTA ── */
+  .cta-section {
+    position: relative; z-index: 2;
+    padding: 0 36px 0;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    align-items: center;
+  }
+  .cta-left h3 {
+    font-size: 1.3rem;
+    font-weight: 900;
+    line-height: 1.4;
+    margin-bottom: 10px;
+  }
+  .cta-left h3 .highlight {
+    background: linear-gradient(135deg, var(--cyan), #6ec6ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .cta-contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .cta-contact-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.78rem;
+    color: var(--gray);
+  }
+  .cta-contact-row .icon {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: rgba(0,212,255,0.15);
+    border: 1px solid rgba(0,212,255,0.35);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.65rem;
+    flex-shrink: 0;
+  }
+  .cta-contact-row strong { color: var(--white); }
+
+  .qr-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .qr-placeholder {
+    width: 90px; height: 90px;
+    background: var(--white);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  /* simple QR-like pattern */
+  .qr-placeholder::before {
+    content: '';
+    position: absolute; inset: 6px;
+    background:
+      repeating-linear-gradient(0deg,   #000 0px,#000 4px,#fff 4px,#fff 8px),
+      repeating-linear-gradient(90deg,  #000 0px,#000 4px,#fff 4px,#fff 8px);
+    opacity: 0.18;
+    border-radius: 4px;
+  }
+  .qr-placeholder .qr-corner {
+    position: absolute;
+    width: 20px; height: 20px;
+    border: 3px solid #000;
+    border-radius: 2px;
+  }
+  .qr-placeholder .qr-corner.tl { top: 8px; left: 8px; border-right: none; border-bottom: none; }
+  .qr-placeholder .qr-corner.tr { top: 8px; right: 8px; border-left: none; border-bottom: none; }
+  .qr-placeholder .qr-corner.bl { bottom: 8px; left: 8px; border-right: none; border-top: none; }
+  .qr-inner { width: 8px; height: 8px; background: #000; border-radius: 1px; position: absolute; top: 14px; left: 14px; }
+  .qr-inner.tr { top: 14px; left: auto; right: 14px; }
+  .qr-inner.bl { top: auto; bottom: 14px; left: 14px; }
+  .qr-label { font-size: 0.62rem; color: var(--gray); letter-spacing: 1px; text-align: center; }
+
+  /* ── footer ── */
+  .footer-bar {
+    position: relative; z-index: 2;
+    margin-top: 24px;
+    padding: 14px 36px;
+    border-top: 1px solid rgba(0,212,255,0.15);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(10,15,46,0.5);
+  }
+  .footer-bar .addr {
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.6;
+  }
+  .footer-bar .hours {
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.4);
+    text-align: right;
+    line-height: 1.6;
+  }
+
+  /* ── print button (screen only) ── */
+  .print-btn {
+    position: fixed;
+    bottom: 24px; right: 24px;
+    background: var(--cyan);
+    color: #000;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 20px rgba(0,212,255,0.35);
+    z-index: 999;
+  }
+  .print-btn:hover { opacity: 0.9; transform: translateY(-2px); transition: all .2s; }
+  /* ══════════════════════════════
+     RESPONSIVE DESIGN
+  ══════════════════════════════ */
+
+  /* ── タブレット（〜600px） ── */
+  @media (max-width: 600px) {
+    .flyer { min-height: 100vh; }
+
+    /* top bar */
+    .top-bar { padding: 14px 18px; gap: 8px; flex-wrap: wrap; }
+    .logo { font-size: 1.1rem; }
+
+    /* hero */
+    .hero { padding: 28px 18px 20px; }
+    .hero-title { font-size: 2.2rem; }
+    .hero-title .line2 { font-size: 1.8rem; letter-spacing: 3px; }
+    .hero-sub { font-size: 0.8rem; }
+
+    /* catches */
+    .catches { padding: 0 18px 20px; gap: 6px; }
+    .catch-chip { font-size: 0.72rem; padding: 5px 12px; }
+
+    /* divider */
+    .divider { margin: 0 18px 20px; }
+
+    /* price hero */
+    .price-hero { padding: 0 18px 20px; }
+    .price-main { font-size: 3rem; }
+    .price-note { font-size: 0.72rem; }
+
+    /* 3 points → 1列 */
+    .points {
+      grid-template-columns: 1fr;
+      padding: 0 18px 20px;
+      gap: 8px;
+    }
+    .point-card { padding: 14px 12px; }
+
+    /* plans → 1列 */
+    .plans-section { padding: 0 18px 20px; }
+    .plans-grid { grid-template-columns: 1fr; }
+
+    /* options → 1列 */
+    .options-section { padding: 0 18px 20px; }
+    .options-grid { grid-template-columns: 1fr 1fr; }
+
+    /* cases → 1列 */
+    .cases-section { padding: 0 18px 20px; }
+    .cases-grid { grid-template-columns: 1fr; }
+
+    /* cta */
+    .cta-section {
+      padding: 0 18px 20px;
+      grid-template-columns: 1fr;
+    }
+    .qr-box { flex-direction: row; justify-content: center; }
+
+    /* footer */
+    .footer-bar {
+      padding: 14px 18px;
+      flex-direction: column;
+      gap: 6px;
+      text-align: center;
+    }
+    .footer-bar .hours { text-align: center; }
+
+    /* simulator */
+    .simulator-section { padding: 0 18px 20px; }
+    .sim-choices { grid-template-columns: 1fr; }
+    .sim-choices-opt { grid-template-columns: 1fr; }
+    .sim-total-price { font-size: 1.8rem; }
+
+    /* form */
+    .appform-section { padding: 0 18px 20px; }
+    .appform-fields-2 { grid-template-columns: 1fr; }
+    .appform-body { padding: 16px 14px; gap: 12px; }
+
+    /* print btn */
+    .print-btn { bottom: 14px; right: 14px; padding: 10px 18px; font-size: 0.78rem; }
+
+    /* section labels */
+    .section-label { font-size: 0.65rem; }
+  }
+
+  /* ── 小スマホ（〜400px） ── */
+  @media (max-width: 400px) {
+    .hero-title { font-size: 1.8rem; }
+    .hero-title .line2 { font-size: 1.5rem; }
+    .price-main { font-size: 2.4rem; }
+    .top-bar { justify-content: center; }
+    .badge { display: none; }
+    .options-grid { grid-template-columns: 1fr; }
+    .appform-checks { flex-direction: column; }
+  }
+
+  /* ── 中間サイズ タブレット（601px〜794px） ── */
+  @media (min-width: 601px) and (max-width: 794px) {
+    .hero-title { font-size: 2.8rem; }
+    .points { padding: 0 24px 24px; }
+    .plans-section, .options-section, .cases-section,
+    .simulator-section, .appform-section { padding-left: 24px; padding-right: 24px; }
+    .top-bar, .hero, .catches, .price-hero,
+    .cta-section, .footer-bar { padding-left: 24px; padding-right: 24px; }
+    .divider { margin-left: 24px; margin-right: 24px; }
+    .sim-choices-opt { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media print {
+    body { background: none; }
+    .print-btn { display: none; }
+    .flyer { width: 210mm; min-height: 297mm; max-width: none; margin: 0; }
+    .grid-bg, .dot { display: none; }
+  } */
+  .simulator-section {
+    position: relative; z-index: 2;
+    padding: 0 36px 28px;
+  }
+  .sim-step {
+    margin-bottom: 18px;
+  }
+  .sim-step-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--gray);
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .sim-num {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.8rem;
+    color: var(--cyan);
+    background: rgba(0,212,255,0.1);
+    border: 1px solid rgba(0,212,255,0.35);
+    border-radius: 4px;
+    padding: 2px 7px;
+    letter-spacing: 1px;
+  }
+  .sim-choices {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .sim-choices-opt {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .sim-choice {
+    cursor: pointer;
+    display: block;
+    position: relative;
+  }
+  .sim-choice input {
+    position: absolute;
+    opacity: 0;
+    width: 0; height: 0;
+  }
+  .sim-choice-inner {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 10px;
+    padding: 14px 14px 12px;
+    transition: all 0.25s ease;
+    height: 100%;
+  }
+  .sim-choice input:checked + .sim-choice-inner {
+    border-color: var(--cyan);
+    background: rgba(0,212,255,0.08);
+    box-shadow: 0 0 16px rgba(0,212,255,0.12);
+  }
+  .sim-choice-inner::after {
+    content: '';
+    display: block;
+    width: 14px; height: 14px;
+    border: 2px solid rgba(255,255,255,0.2);
+    border-radius: 50%;
+    position: absolute;
+    top: 12px; right: 12px;
+    transition: all 0.2s;
+  }
+  .sim-choice input[type="checkbox"] + .sim-choice-inner::after {
+    border-radius: 3px;
+  }
+  .sim-choice input:checked + .sim-choice-inner::after {
+    background: var(--cyan);
+    border-color: var(--cyan);
+    box-shadow: 0 0 8px rgba(0,212,255,0.5);
+  }
+  .sim-choice-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 3px;
+    line-height: 1.4;
+    padding-right: 18px;
+  }
+  .sim-choice-price {
+    font-size: 0.85rem;
+    font-weight: 900;
+    color: var(--cyan);
+    margin-bottom: 4px;
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 0.5px;
+  }
+  .sim-choice-desc {
+    font-size: 0.65rem;
+    color: var(--gray);
+    line-height: 1.5;
+  }
+  /* counter */
+  .sim-count-wrap {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 8px;
+    opacity: 0.3;
+    pointer-events: none;
+    transition: opacity 0.2s;
+  }
+  .sim-choice input:checked ~ .sim-choice-inner .sim-count-wrap,
+  .sim-count-wrap.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .sim-count-btn {
+    background: rgba(0,212,255,0.15);
+    border: 1px solid rgba(0,212,255,0.4);
+    color: var(--cyan);
+    width: 22px; height: 22px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    line-height: 1;
+    transition: background 0.15s;
+  }
+  .sim-count-btn:hover { background: rgba(0,212,255,0.3); }
+  .sim-count-val {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.85rem;
+    color: var(--white);
+    min-width: 18px;
+    text-align: center;
+  }
+  .sim-count-unit {
+    font-size: 0.65rem;
+    color: var(--gray);
+  }
+
+  /* result */
+  .sim-result {
+    background: rgba(0,212,255,0.05);
+    border: 1px solid rgba(0,212,255,0.35);
+    border-radius: 14px;
+    padding: 20px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .sim-result::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0,212,255,0.04) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .sim-result-label {
+    font-size: 0.68rem;
+    letter-spacing: 2px;
+    color: var(--cyan);
+    margin-bottom: 12px;
+    font-weight: 700;
+  }
+  .sim-breakdown {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 14px;
+    min-height: 20px;
+  }
+  .sim-breakdown-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.7rem;
+    color: var(--gray);
+    padding: 3px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .sim-breakdown-row.plan-row {
+    color: var(--white);
+    font-weight: 700;
+  }
+  .sim-total-wrap {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .sim-total-label {
+    font-size: 0.7rem;
+    color: var(--gray);
+    white-space: nowrap;
+  }
+  .sim-total-price {
+    font-size: 2.4rem;
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1;
+    font-family: 'Orbitron', sans-serif;
+    text-shadow: 0 0 30px rgba(0,212,255,0.4);
+  }
+  .sim-yen {
+    font-size: 1.1rem;
+    color: var(--cyan);
+    vertical-align: super;
+    margin-right: 2px;
+  }
+  .sim-per {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: var(--gray);
+    font-family: 'Noto Sans JP', sans-serif;
+    margin-left: 4px;
+  }
+  .sim-init-note {
+    font-size: 0.62rem;
+    color: rgba(255,255,255,0.3);
+    margin-top: 8px;
+    width: 100%;
+    letter-spacing: 0.5px;
+  }
+  /* ── application form ── */
+  .appform-section {
+    position: relative; z-index: 2;
+    padding: 0 36px 28px;
+  }
+  /* popup */
+  .appform-popup {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0,0,0,0.65);
+    backdrop-filter: blur(4px);
+    align-items: center;
+    justify-content: center;
+  }
+  .appform-popup.active { display: flex; }
+  .appform-popup-inner {
+    background: var(--blue-mid);
+    border: 1px solid rgba(0,212,255,0.5);
+    border-radius: 16px;
+    padding: 36px 32px;
+    text-align: center;
+    box-shadow: 0 0 60px rgba(0,212,255,0.2);
+    animation: popIn .25s cubic-bezier(.34,1.56,.64,1);
+  }
+  @keyframes popIn {
+    from { transform: scale(.8); opacity: 0; }
+    to   { transform: scale(1);  opacity: 1; }
+  }
+  .appform-popup-icon { font-size: 2.2rem; margin-bottom: 12px; }
+  .appform-popup-msg {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+  .appform-popup-btn {
+    background: var(--cyan);
+    color: #000;
+    border: none;
+    padding: 10px 28px;
+    border-radius: 50px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: opacity .2s;
+  }
+  .appform-popup-btn:hover { opacity: .85; }
+  /* form body */
+  .appform-body {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(0,212,255,0.2);
+    border-radius: 14px;
+    padding: 24px 24px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .appform-row { display: flex; flex-direction: column; gap: 6px; }
+  .appform-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: .5px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .appform-req {
+    font-size: 0.6rem;
+    background: rgba(0,212,255,0.2);
+    color: var(--cyan);
+    border: 1px solid rgba(0,212,255,0.4);
+    border-radius: 4px;
+    padding: 1px 6px;
+    letter-spacing: 1px;
+  }
+  .appform-opt {
+    font-size: 0.6rem;
+    background: rgba(255,255,255,0.06);
+    color: var(--gray);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 4px;
+    padding: 1px 6px;
+    letter-spacing: 1px;
+  }
+  .appform-fields-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .appform-field-wrap { width: 100%; }
+  .appform-input {
+    width: 100%;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px;
+    padding: 9px 12px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 0.78rem;
+    color: var(--white);
+    outline: none;
+    transition: border-color .2s, box-shadow .2s;
+  }
+  .appform-input::placeholder { color: rgba(255,255,255,0.25); }
+  .appform-input:focus {
+    border-color: rgba(0,212,255,0.55);
+    box-shadow: 0 0 0 3px rgba(0,212,255,0.08);
+  }
+  .appform-input.error { border-color: rgba(255,80,80,0.7); }
+  .appform-textarea { min-height: 80px; resize: vertical; }
+  /* plan selector */
+  .appform-plan-wrap { position: relative; }
+  .appform-plan-display {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(0,212,255,0.06);
+    border: 1px solid rgba(0,212,255,0.3);
+    border-radius: 8px;
+    padding: 10px 14px;
+    cursor: pointer;
+    transition: background .2s, border-color .2s;
+  }
+  .appform-plan-display:hover { background: rgba(0,212,255,0.1); border-color: rgba(0,212,255,0.5); }
+  .appform-plan-icon { font-size: 1rem; }
+  .appform-plan-text {
+    flex: 1;
+    font-size: 0.78rem;
+    color: var(--gray);
+    letter-spacing: .3px;
+  }
+  .appform-plan-text.selected { color: var(--white); font-weight: 700; }
+  .appform-plan-arrow { font-size: 0.8rem; color: var(--cyan); }
+  .appform-plan-options {
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .appform-plan-opt {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    padding: 10px 14px;
+    cursor: pointer;
+    transition: all .2s;
+  }
+  .appform-plan-opt:hover { border-color: rgba(0,212,255,0.4); background: rgba(0,212,255,0.06); }
+  .appform-plan-opt.chosen { border-color: var(--cyan); background: rgba(0,212,255,0.1); }
+  .appform-plan-opt-label { flex: 1; font-size: 0.78rem; color: var(--white); }
+  .appform-plan-opt-price { font-size: 0.82rem; font-weight: 900; color: var(--cyan); font-family: 'Orbitron', sans-serif; }
+  .appform-plan-opt-dot {
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.25);
+    transition: all .2s;
+    flex-shrink: 0;
+  }
+  .appform-plan-opt.chosen .appform-plan-opt-dot { background: var(--cyan); border-color: var(--cyan); box-shadow: 0 0 8px rgba(0,212,255,.5); }
+  /* contact checks */
+  .appform-checks {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .appform-check {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    cursor: pointer;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 50px;
+    padding: 6px 14px;
+    transition: all .2s;
+    font-size: 0.75rem;
+    color: var(--gray);
+  }
+  .appform-check input { display: none; }
+  .appform-check:has(input:checked) {
+    background: rgba(0,212,255,0.12);
+    border-color: var(--cyan);
+    color: var(--white);
+  }
+  /* submit */
+  .appform-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #00d4ff 0%, #19448e 100%);
+    border: none;
+    border-radius: 10px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #000;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: opacity .2s, transform .2s, box-shadow .2s;
+    box-shadow: 0 4px 24px rgba(0,212,255,0.3);
+    margin-top: 4px;
+  }
+  .appform-submit:hover { opacity: .9; transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,212,255,0.45); }
+  .appform-submit-arrow { font-size: 1rem; }
+  .appform-note {
+    font-size: 0.62rem;
+    color: rgba(255,255,255,0.3);
+    text-align: center;
+    letter-spacing: .5px;
+  }
+  /* success state */
+  .appform-success {
+    text-align: center;
+    padding: 32px 16px;
+    display: none;
+  }
+  .appform-success.active { display: block; }
+  .appform-success-icon { font-size: 2.5rem; margin-bottom: 12px; }
+  .appform-success-title {
+    font-size: 1rem;
+    font-weight: 900;
+    color: var(--cyan);
+    margin-bottom: 6px;
+    letter-spacing: 1px;
+  }
+  .appform-success-msg { font-size: 0.75rem; color: var(--gray); line-height: 1.8; }
+  @keyframes pulse-cyan {
+    0%,100% { text-shadow: 0 0 20px rgba(0,212,255,0.4); }
+    50%      { text-shadow: 0 0 45px rgba(0,212,255,0.9), 0 0 80px rgba(0,212,255,0.3); }
+  }
+  .sim-total-price.animating {
+    animation: pulse-cyan 0.4s ease-in-out;
+  }
+
+  /* ── privacy checkbox in form ── */
+  .appform-privacy-check {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    cursor: pointer;
+    padding: 12px 14px;
+    background: rgba(0,212,255,0.04);
+    border: 1px solid rgba(0,212,255,0.2);
+    border-radius: 8px;
+    transition: border-color .2s, background .2s;
+  }
+  .appform-privacy-check:hover { border-color: rgba(0,212,255,0.45); background: rgba(0,212,255,0.07); }
+  .appform-privacy-check input { display: none; }
+  .appform-privacy-box {
+    width: 18px; height: 18px;
+    flex-shrink: 0;
+    border: 2px solid rgba(0,212,255,0.45);
+    border-radius: 4px;
+    margin-top: 1px;
+    display: flex; align-items: center; justify-content: center;
+    transition: all .2s;
+    background: transparent;
+    position: relative;
+  }
+  .appform-privacy-check input:checked + .appform-privacy-box {
+    background: var(--cyan);
+    border-color: var(--cyan);
+    box-shadow: 0 0 10px rgba(0,212,255,0.4);
+  }
+  .appform-privacy-check input:checked + .appform-privacy-box::after {
+    content: '✓';
+    color: #000;
+    font-size: 0.75rem;
+    font-weight: 900;
+    position: absolute;
+  }
+  .appform-privacy-text {
+    font-size: 0.75rem;
+    color: var(--gray);
+    line-height: 1.6;
+  }
+  .appform-privacy-link {
+    color: var(--cyan);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .appform-privacy-link:hover { opacity: .8; }
+  .appform-privacy-error {
+    display: none;
+    font-size: 0.68rem;
+    color: #ff6b6b;
+    padding: 6px 10px;
+    background: rgba(255,107,107,0.08);
+    border: 1px solid rgba(255,107,107,0.3);
+    border-radius: 6px;
+    margin-top: 6px;
+  }
+  .appform-privacy-error.show { display: block; animation: shakeX .35s ease; }
+  @keyframes shakeX {
+    0%,100% { transform: translateX(0); }
+    20%      { transform: translateX(-6px); }
+    40%      { transform: translateX(6px); }
+    60%      { transform: translateX(-4px); }
+    80%      { transform: translateX(4px); }
+  }
+  .appform-privacy-label.error-border { border-color: rgba(255,107,107,0.5) !important; background: rgba(255,107,107,0.05) !important; }
+
+  /* ── footer privacy link ── */
+  .footer-links {
+    position: relative; z-index: 2;
+    text-align: center;
+    padding: 10px 36px 18px;
+    background: rgba(10,15,46,0.5);
+  }
+  .footer-privacy-link {
+    font-size: 0.68rem;
+    color: rgba(0,212,255,0.6);
+    text-decoration: none;
+    letter-spacing: 1px;
+    border-bottom: 1px solid rgba(0,212,255,0.2);
+    padding-bottom: 1px;
+    transition: color .2s;
+  }
+  .footer-privacy-link:hover { color: var(--cyan); }
+
+  /* ── privacy modal ── */
+  .privacy-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background: rgba(0,0,0,0.75);
+    backdrop-filter: blur(6px);
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+  }
+  .privacy-modal.active { display: flex; }
+  .privacy-modal-inner {
+    background: var(--blue-mid);
+    border: 1px solid rgba(0,212,255,0.4);
+    border-radius: 16px;
+    width: 100%;
+    max-width: 680px;
+    max-height: 88vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 60px rgba(0,212,255,0.15);
+    animation: popIn .25s cubic-bezier(.34,1.56,.64,1);
+  }
+  .privacy-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 24px 16px;
+    border-bottom: 1px solid rgba(0,212,255,0.15);
+    flex-shrink: 0;
+  }
+  .privacy-modal-title {
+    font-size: 0.9rem;
+    font-weight: 900;
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    letter-spacing: .5px;
+  }
+  .privacy-modal-icon { font-size: 1.1rem; }
+  .privacy-modal-close {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: var(--gray);
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 0.8rem;
+    display: flex; align-items: center; justify-content: center;
+    transition: all .2s;
+  }
+  .privacy-modal-close:hover { background: rgba(255,255,255,0.15); color: var(--white); }
+  .privacy-modal-body {
+    overflow-y: auto;
+    padding: 20px 24px;
+    flex: 1;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0,212,255,0.3) transparent;
+  }
+  .privacy-modal-body::-webkit-scrollbar { width: 4px; }
+  .privacy-modal-body::-webkit-scrollbar-thumb { background: rgba(0,212,255,0.3); border-radius: 4px; }
+  .pp-section { margin-bottom: 20px; }
+  .pp-section-title {
+    font-size: 0.78rem;
+    font-weight: 900;
+    color: var(--cyan);
+    margin-bottom: 8px;
+    padding-left: 8px;
+    border-left: 2px solid var(--cyan);
+    letter-spacing: .5px;
+  }
+  .pp-text { font-size: 0.72rem; color: var(--gray); line-height: 1.85; margin-bottom: 6px; }
+  .pp-note { color: rgba(255,255,255,0.4); font-size: 0.68rem; }
+  .pp-list { list-style: none; display: flex; flex-direction: column; gap: 5px; margin: 8px 0; }
+  .pp-list li { font-size: 0.72rem; color: var(--gray); padding-left: 14px; position: relative; line-height: 1.6; }
+  .pp-list li::before { content: '✦'; position: absolute; left: 0; color: var(--cyan); font-size: 0.5rem; top: 4px; }
+  .pp-contact-box { background: rgba(255,255,255,0.04); border: 1px solid rgba(0,212,255,0.15); border-radius: 8px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px; }
+  .pp-contact-name { font-size: 0.8rem; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+  .pp-contact-row { font-size: 0.7rem; color: var(--gray); }
+  .pp-date { font-size: 0.62rem; color: rgba(255,255,255,0.25); text-align: right; margin-top: 8px; letter-spacing: .5px; }
+  .privacy-modal-footer {
+    display: flex;
+    gap: 10px;
+    padding: 16px 24px;
+    border-top: 1px solid rgba(0,212,255,0.15);
+    flex-shrink: 0;
+  }
+  .privacy-modal-agree {
+    flex: 1;
+    padding: 11px;
+    background: linear-gradient(135deg, #00d4ff 0%, #19448e 100%);
+    border: none;
+    border-radius: 8px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #000;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: opacity .2s;
+  }
+  .privacy-modal-agree:hover { opacity: .88; }
+  .privacy-modal-close-btn {
+    padding: 11px 20px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 8px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 0.8rem;
+    color: var(--gray);
+    cursor: pointer;
+    transition: all .2s;
+  }
+  .privacy-modal-close-btn:hover { background: rgba(255,255,255,0.12); color: var(--white); }
+  @media (max-width: 600px) {
+    .privacy-modal-inner { max-height: 92vh; }
+    .privacy-modal-header, .privacy-modal-body, .privacy-modal-footer { padding-left: 16px; padding-right: 16px; }
+    .privacy-modal-title { font-size: 0.8rem; }
+    .footer-links { padding: 10px 18px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<button class="print-btn" onclick="window.print()">🖨️ 印刷 / PDF保存</button>
+
+<div class="flyer">
+  <!-- backgrounds -->
+  <div class="grid-bg"></div>
+  <div class="glow-left"></div>
+  <div class="glow-right"></div>
+  <div class="glow-bottom"></div>
+  <div class="particles" id="particles"></div>
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <div class="logo">CRAFT<span>ON</span></div>
+    <div class="badge">B型就労継続支援事業所</div>
+    <div style="font-size:0.7rem;color:var(--gray);letter-spacing:1px">大阪市平野区</div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow">DIGITAL CREATION SERVICE</div>
+    <div class="hero-title">
+      月々7,000円で<br>プロのホームページ
+      <span class="line2">CRAFTON</span>
+    </div>
+    <div class="hero-sub">
+      デジタルスキルで、あなたのビジネスの可能性を広げる。<br>
+      Web制作・SNS運用・動画編集・SEO対策まで、すべておまかせ。
+    </div>
+  </div>
+
+  <!-- CATCH COPIES -->
+  <div class="catches">
+    <div class="catch-chip">月々7,000円で制作＋管理が全部込み</div>
+    <div class="catch-chip">お店のファンをネットで増やそう</div>
+    <div class="catch-chip">制作費0円・毎月7,000円で全部おまかせ</div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- PRICE HERO -->
+  <div class="price-hero">
+    <div class="price-label">月額料金（税込）</div>
+    <div class="price-main">
+      <span class="yen">¥</span>7,000<span class="per">/ 月</span>
+    </div>
+    <div class="price-note">✦ 初期費用・制作費 0円 ✦ レンタルサーバー込み ✦ 無料ドメイン付き</div>
+  </div>
+
+  <!-- 3 POINTS -->
+  <div class="points">
+    <div class="point-card">
+      <div class="point-icon">🐤</div>
+      <div class="point-title">初期費用<br>2000円</div>
+      <div class="point-body">初月の一回のみ2000円を頂いています。</div>
+    </div>
+    <div class="point-card">
+      <div class="point-icon">🌐</div>
+      <div class="point-title">月1回<br>無料更新</div>
+      <div class="point-body">毎月1回、写真・文章・お知らせなどを無料で更新。常に最新の情報を発信できます。</div>
+    </div>
+    <div class="point-card">
+      <div class="point-icon">🔒</div>
+      <div class="point-title">サーバー・<br>ドメインサポート込み</div>
+      <div class="point-body">レンタルサーバーと独自ドメインの取得サポートや設定も込み。面倒な設定は一切不要です。</div>
+    </div>
+  </div>
+
+  <!-- PLANS -->
+  <div class="plans-section">
+    <div class="section-label">料金 &amp; プラン</div>
+    <div class="plans-grid">
+      <!-- standard -->
+      <div class="plan-card">
+        <div class="plan-name">スタンダードプラン</div>
+        <div class="plan-price">¥7,000<small> / 月</small></div>
+        <ul class="plan-items">
+          <li>ホームページ制作・維持管理</li>
+          <li>月1回無料コンテンツ更新</li>
+          <li>レンタルサーバー利用料込み</li>
+          <li>無料ドメイン付き</li>
+          <li>お問い合わせフォーム設置</li>
+          <li>スマートフォン対応（レスポンシブ）</li>
+        </ul>
+      </div>
+      <!-- featured -->
+      <div class="plan-card featured">
+        <div class="plan-name">プレミアムプラン</div>
+        <div class="plan-price">¥13,000<small> / 月〜</small></div>
+        <ul class="plan-items">
+          <li>スタンダードの全内容込み</li>
+          <li>GoogleマップMEO対策</li>
+          <li>SEO対策（検索上位表示）</li>
+          <li>インスタ＆TikTok同時投稿代行（週1回）</li>
+          <li>月2回以降の更新 ＋1,000円/回</li>
+          <li>Google広告運用アドバイス</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- OPTIONS -->
+  <div class="options-section">
+    <div class="section-label">オプション</div>
+    <div class="options-grid">
+      <div class="option-chip">
+        <div class="option-name">月二回目以降<br>の更新</div>
+        <div class="option-price">＋1,000円 / 回</div>
+      </div>
+      <div class="option-chip">
+        <div class="option-name">Googleマップ<br>MEO＋SEO</div>
+        <div class="option-price">＋1,000円 / 月</div>
+      </div>
+      <div class="option-chip">
+        <div class="option-name">SNS運用代行<br>週1プラン</div>
+        <div class="option-price">＋5,000円 / 月</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SIMULATOR -->
+  <div class="simulator-section">
+    <div class="section-label">料金シミュレーション</div>
+
+    <!-- STEP 1: Plan -->
+    <div class="sim-step" id="sim-step-1">
+      <div class="sim-step-label"><span class="sim-num">01</span> プランを選択してください</div>
+      <div class="sim-choices">
+        <label class="sim-choice">
+          <input type="radio" name="plan" value="standard" checked>
+          <div class="sim-choice-inner">
+            <div class="sim-choice-title">スタンダードプラン</div>
+            <div class="sim-choice-price">¥7,000 / 月</div>
+            <div class="sim-choice-desc">HP制作・維持管理・月1更新込み</div>
+          </div>
+        </label>
+        <label class="sim-choice">
+          <input type="radio" name="plan" value="premium">
+          <div class="sim-choice-inner">
+            <div class="sim-choice-title">プレミアムプラン</div>
+            <div class="sim-choice-price">¥13,000 / 月〜</div>
+            <div class="sim-choice-desc">MEO・SEO・SNS代行・広告アドバイス込み</div>
+          </div>
+        </label>
+      </div>
+    </div>
+
+    <!-- STEP 2: Options -->
+    <div class="sim-step" id="sim-step-2">
+      <div class="sim-step-label"><span class="sim-num">02</span> オプションを選択（複数可）</div>
+      <div class="sim-choices sim-choices-opt">
+        <label class="sim-choice sim-opt-choice">
+          <input type="checkbox" name="opt" value="update" data-price="1000">
+          <div class="sim-choice-inner">
+            <div class="sim-choice-title">月2回目以降の更新</div>
+            <div class="sim-choice-price">＋¥1,000 / 回</div>
+            <div class="sim-choice-desc">回数を指定してください</div>
+            <div class="sim-count-wrap">
+              <button class="sim-count-btn" onclick="changeCount(this,-1)">−</button>
+              <span class="sim-count-val">1</span>
+              <button class="sim-count-btn" onclick="changeCount(this,1)">＋</button>
+              <span class="sim-count-unit">回</span>
+            </div>
+          </div>
+        </label>
+        <label class="sim-choice sim-opt-choice">
+          <input type="checkbox" name="opt" value="meo" data-price="1000">
+          <div class="sim-choice-inner">
+            <div class="sim-choice-title">GoogleマップMEO＋SEO</div>
+            <div class="sim-choice-price">＋¥1,000 / 月</div>
+            <div class="sim-choice-desc">検索上位表示・Googleマップ最適化</div>
+          </div>
+        </label>
+        <label class="sim-choice sim-opt-choice">
+          <input type="checkbox" name="opt" value="sns" data-price="5000">
+          <div class="sim-choice-inner">
+            <div class="sim-choice-title">SNS運用代行 週1プラン</div>
+            <div class="sim-choice-price">＋¥5,000 / 月</div>
+            <div class="sim-choice-desc">インスタ・TikTok週1回投稿代行</div>
+          </div>
+        </label>
+      </div>
+    </div>
+
+    <!-- STEP 3: Result -->
+    <div class="sim-result" id="sim-result">
+      <div class="sim-result-label">月額料金シミュレーション結果</div>
+      <div class="sim-breakdown" id="sim-breakdown"></div>
+      <div class="sim-total-wrap">
+        <div class="sim-total-label">月額合計（税込）</div>
+        <div class="sim-total-price">
+          <span class="sim-yen">¥</span><span id="sim-total-num">7,000</span><span class="sim-per"> / 月</span>
+        </div>
+        <div class="sim-init-note">※ 初回のみ初期費用 ¥2,000 が別途かかります</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- APPLICATION FORM -->
+  <div class="appform-section">
+    <div class="section-label">お申込みフォーム</div>
+
+    <!-- popup overlay -->
+    <div class="appform-popup" id="appform-popup">
+      <div class="appform-popup-inner">
+        <div class="appform-popup-icon">⚡</div>
+        <div class="appform-popup-msg">先にシミュレーションを<br>実行してください</div>
+        <button class="appform-popup-btn" onclick="document.getElementById('appform-popup').classList.remove('active');document.querySelector('.simulator-section').scrollIntoView({behavior:'smooth'})">シミュレーションへ</button>
+      </div>
+    </div>
+
+    <div class="appform-body">
+      <!-- お名前 -->
+      <div class="appform-row">
+        <label class="appform-label">お名前 <span class="appform-req">必須</span></label>
+        <div class="appform-fields appform-fields-2">
+          <div class="appform-field-wrap">
+            <input class="appform-input" type="text" placeholder="姓" id="f-sei">
+          </div>
+          <div class="appform-field-wrap">
+            <input class="appform-input" type="text" placeholder="名" id="f-mei">
+          </div>
+        </div>
+      </div>
+
+      <!-- 店舗・会社名 -->
+      <div class="appform-row">
+        <label class="appform-label">店舗・会社名 <span class="appform-opt">任意</span></label>
+        <div class="appform-field-wrap">
+          <input class="appform-input" type="text" placeholder="例）カフェ○○ / 株式会社○○" id="f-company">
+        </div>
+      </div>
+
+      <!-- 電話番号 -->
+      <div class="appform-row">
+        <label class="appform-label">電話番号 <span class="appform-req">必須</span></label>
+        <div class="appform-field-wrap">
+          <input class="appform-input" type="tel" placeholder="例）090-0000-0000" id="f-tel">
+        </div>
+      </div>
+
+      <!-- メールアドレス -->
+      <div class="appform-row">
+        <label class="appform-label">メールアドレス <span class="appform-req">必須</span></label>
+        <div class="appform-field-wrap">
+          <input class="appform-input" type="email" placeholder="例）example@mail.com" id="f-email">
+        </div>
+      </div>
+
+      <!-- 希望プラン（シミュレーション結果） -->
+      <div class="appform-row">
+        <label class="appform-label">ご希望プラン / 月額料金 <span class="appform-req">必須</span></label>
+        <div class="appform-field-wrap appform-plan-wrap" id="appform-plan-wrap">
+          <div class="appform-plan-display" id="appform-plan-display" onclick="handlePlanClick()">
+            <span class="appform-plan-icon">📋</span>
+            <span class="appform-plan-text" id="appform-plan-text">シミュレーション結果を反映する</span>
+            <span class="appform-plan-arrow">→</span>
+          </div>
+          <div class="appform-plan-options" id="appform-plan-options"></div>
+        </div>
+      </div>
+
+      <!-- ご要望・メッセージ -->
+      <div class="appform-row">
+        <label class="appform-label">ご要望・メッセージ <span class="appform-opt">任意</span></label>
+        <div class="appform-field-wrap">
+          <textarea class="appform-input appform-textarea" placeholder="ご質問・ご要望などお気軽にどうぞ" id="f-msg"></textarea>
+        </div>
+      </div>
+
+      <!-- 連絡希望方法 -->
+      <div class="appform-row">
+        <label class="appform-label">ご連絡希望方法 <span class="appform-req">必須</span></label>
+        <div class="appform-checks">
+          <label class="appform-check"><input type="checkbox" name="contact" value="tel"><span>電話</span></label>
+          <label class="appform-check"><input type="checkbox" name="contact" value="email"><span>メール</span></label>
+          <label class="appform-check"><input type="checkbox" name="contact" value="line"><span>LINE</span></label>
+        </div>
+      </div>
+
+      <!-- privacy policy agreement -->
+      <div class="appform-row">
+        <label class="appform-privacy-check" id="appform-privacy-label">
+          <input type="checkbox" id="f-privacy">
+          <span class="appform-privacy-box"></span>
+          <span class="appform-privacy-text">
+            <a href="#" class="appform-privacy-link" onclick="openPrivacy(event)">個人情報の取扱い（プライバシーポリシー）</a>に同意する
+          </span>
+        </label>
+        <div class="appform-privacy-error" id="appform-privacy-error">
+          ⚠ 個人情報の取扱いについてに同意してください
+        </div>
+      </div>
+
+      <!-- submit -->
+      <button class="appform-submit" id="appform-submit" onclick="handleSubmit()">
+        <span class="appform-submit-text">無料相談を申し込む</span>
+        <span class="appform-submit-arrow">→</span>
+      </button>
+      <div class="appform-note">送信後、担当者より2営業日以内にご連絡いたします。</div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <div class="cta-left">
+      <h3>まずは<span class="highlight">無料相談</span>から<br>お気軽にどうぞ！</h3>
+      <div class="cta-contacts">
+        <div class="cta-contact-row">
+          <div class="icon">📞</div>
+          <div><strong>06-6777-2104</strong>　月〜土 9:00〜18:00</div>
+        </div>
+        <div class="cta-contact-row">
+          <div class="icon">✉</div>
+          <div><strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b7d4c5d6d1c3d8d987878785f7d0dad6dedb99d4d8da">[email&#160;protected]</a></strong></div>
+        </div>
+        <div class="cta-contact-row">
+          <div class="icon">🌐</div>
+          <div>https://www.crafton.co.jp/</div>
+        </div>
+        <div class="cta-contact-row">
+          <div class="icon">💬</div>
+          <div>LINEでも受付中</div>
+        </div>
+      </div>
+    </div>
+    <div class="qr-box">
+      <div class="qr-placeholder">
+        <div class="qr-corner tl"></div>
+        <div class="qr-corner tr"></div>
+        <div class="qr-corner bl"></div>
+        <div class="qr-inner"></div>
+        <div class="qr-inner tr"></div>
+        <div class="qr-inner bl"></div>
+      </div>
+      <div class="qr-label">LINE<br>はこちら</div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-bar">
+    <div class="addr">
+      📍 大阪市平野区加美北4-9-11-4号室<br>
+      CRAFTON B型就労継続支援事業所
+    </div>
+    <div class="hours">
+      営業時間 / 月〜土 9:00〜18:00<br>
+      © 2026 CRAFTON All Rights Reserved.
+    </div>
+  </div>
+  <div class="footer-links">
+    <a href="#" class="footer-privacy-link" onclick="openPrivacy(event)">🔒 プライバシーポリシー・個人情報保護方針</a>
+  </div>
+
+</div><!-- /flyer -->
+
+<!-- ── PRIVACY POLICY MODAL ── -->
+<div class="privacy-modal" id="privacy-modal" onclick="closePrivacyOutside(event)">
+  <div class="privacy-modal-inner">
+    <div class="privacy-modal-header">
+      <div class="privacy-modal-title">
+        <span class="privacy-modal-icon">🔒</span>
+        プライバシーポリシー・個人情報保護方針
+      </div>
+      <button class="privacy-modal-close" onclick="closePrivacy()">✕</button>
+    </div>
+    <div class="privacy-modal-body">
+
+      <div class="pp-section">
+        <div class="pp-section-title">はじめに</div>
+        <p class="pp-text">CRAFTON（以下「当事業所」）は、ホームページ制作・SNS運用代行・動画編集・SEO対策等のデジタルクリエイション事業を通じて取得したお客様の個人情報の重要性を認識し、その保護に努めます。当事業所が運営するウェブサイト・お申込みフォームを通じてご提供いただいた個人情報は、以下の方針に基づき適切に管理します。</p>
+      </div>
+
+      <div class="pp-section">
+        <div class="pp-section-title">1. 取得する個人情報の項目</div>
+        <p class="pp-text">当事業所では、お申込み・お問い合わせの際に以下の情報を取得します。</p>
+        <ul class="pp-list">
+          <li>お名前（姓・名）</li>
+          <li>店舗名・会社名</li>
+          <li>電話番号</li>
+          <li>メールアドレス</li>
+          <li>ご要望・ご相談内容</li>
+          <li>ご希望のプラン・月額料金</li>
+          <li>ご連絡希望方法</li>
+        </ul>
+      </div>
+
+      <div class="pp-section">
+        <div class="pp-section-title">2. 個人情報の利用目的</div>
+        <p class="pp-text">取得した個人情報は、以下の目的にのみ使用します。</p>
+        <ul class="pp-list">
+          <li>無料相談・お問い合わせへの回答・ご連絡</li>
+          <li>ホームページ制作・SNS運用代行・動画編集等のお見積りの作成・送付</li>
+          <li>制作依頼・サービス提供に関する業務連絡</li>
+          <li>契約締結・請求・支払い等に関する手続き</li>
+          <li>サービス品質向上のための内部分析（統計的処理により個人を特定しない形で使用）</li>
+          <li>新サービス・お得な情報のご案内（ご希望の方のみ）</li>
+        </ul>
+        <p class="pp-text pp-note">※ 上記目的以外で個人情報を使用する場合は、事前にご本人の同意を得るものとします。</p>
+      </div>
+
+      <div class="pp-section">
+        <div class="pp-section-title">3. 第三者への提供・委託</div>
+        <p class="pp-text">当事業所は、以下の場合を除き、取得した個人情報を第三者に提供・開示しません。</p>
+        <ul class="pp-list">
+          <li>ご本人の同意がある場合</li>
+          <li>法令に基づき開示が必要な場合</li>
+          <li>人の生命・身体・財産の保護のために必要な場合</li>
+        </ul>
+        <p class="pp-text">なお、業務の一部を外部委託する場合は、委託先との間で秘密保持契約を締結し、適切な管理を行います。</p>
+      </div>
+
+      <div class="pp-section">
+        <div class="pp-section-title">4. 個人情報の管理・保管</div>
+        <p class="pp-text">取得した個人情報は、不正アクセス・紛失・破壊・改ざん・漏洩等が生じないよう、適切なセキュリティ対策を講じて管理します。保管期間はサービス提供終了後または最終取引から3年間とし、期間終了後は適切な方法で廃棄します。</p>
+      </div>
+
+      <div class="pp-section">
+        <div class="pp-section-title">5. 個人情報の開示・訂正・削除</div>
+        <p class="pp-text">ご本人から個人情報の開示・訂正・削除のご請求があった場合、合理的な期間内に対応いたします。ご請求は下記お問い合わせ先までご連絡ください。</p>
+      </div>
+
+      <div class="pp-section">
+        <div class="pp-section-title">6. Cookieおよびアクセス解析について</div>
+        <p class="pp-text">当サイトでは、サービス改善を目的としてCookieやアクセス解析ツール（Google Analyticsなど）を使用する場合があります。これらのツールが収集するデータは匿名情報であり、個人を特定するものではありません。</p>
+      </div>
+
+      <div class="pp-section">
+        <div class="pp-section-title">7. プライバシーポリシーの変更</div>
+        <p class="pp-text">本方針は、法令の改正・事業内容の変更等により予告なく改定する場合があります。改定後の内容は当サイト上に掲示した時点で効力を持つものとします。</p>
+      </div>
+
+      <div class="pp-section pp-contact">
+        <div class="pp-section-title">8. お問い合わせ先</div>
+        <div class="pp-contact-box">
+          <div class="pp-contact-name">CRAFTON（クラフトン）B型就労継続支援事業所</div>
+          <div class="pp-contact-row">📍 大阪市平野区加美北4-9-11-4号室</div>
+          <div class="pp-contact-row">📞 06-6777-2104（月〜土 9:00〜18:00）</div>
+          <div class="pp-contact-row">🌐 https://www.crafton.co.jp/</div>
+        </div>
+      </div>
+
+      <div class="pp-date">制定日：2026年1月1日　最終更新：2026年3月19日</div>
+
+    </div>
+    <div class="privacy-modal-footer">
+      <button class="privacy-modal-agree" onclick="agreePrivacy()">同意して閉じる</button>
+      <button class="privacy-modal-close-btn" onclick="closePrivacy()">閉じる</button>
+    </div>
+  </div>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // floating particles
+  const c = document.getElementById('particles');
+  for (let i = 0; i < 30; i++) {
+    const d = document.createElement('div');
+    d.className = 'dot';
+    const size = Math.random() * 3 + 1;
+    d.style.cssText = `
+      width:${size}px; height:${size}px;
+      left:${Math.random()*100}%;
+      bottom:${Math.random()*100}%;
+      animation-duration:${Math.random()*8+6}s;
+      animation-delay:${Math.random()*8}s;
+    `;
+    c.appendChild(d);
+  }
+
+  // ── PRICE SIMULATOR ──
+  const PLANS = {
+    standard: { label: 'スタンダードプラン', price: 7000 },
+    premium:  { label: 'プレミアムプラン',   price: 13000 }
+  };
+
+  let currentTotal = 7000;
+  let animFrame = null;
+
+  function getCount(choiceInner) {
+    const valEl = choiceInner ? choiceInner.querySelector('.sim-count-val') : null;
+    return valEl ? (parseInt(valEl.textContent) || 1) : 1;
+  }
+
+  function calcTotal() {
+    const planRadio = document.querySelector('input[name="plan"]:checked');
+    if (!planRadio) return { total: 7000, rows: [] };
+    const planVal = planRadio.value;
+    const base = PLANS[planVal].price;
+    let total = base;
+    const rows = [{ label: PLANS[planVal].label, price: base }];
+
+    document.querySelectorAll('input[name="opt"]:checked').forEach(inp => {
+      const unitPrice = parseInt(inp.dataset.price) || 0;
+      const choiceInner = inp.closest('.sim-choice').querySelector('.sim-choice-inner');
+      const count = getCount(choiceInner);
+      const subtotal = unitPrice * count;
+      total += subtotal;
+      const nameEl = choiceInner ? choiceInner.querySelector('.sim-choice-title') : null;
+      const label = (nameEl ? nameEl.textContent : '') + (count > 1 ? ` × ${count}回` : '');
+      rows.push({ label, price: subtotal });
+    });
+
+    return { total, rows };
+  }
+
+  function animateCount(from, to, el) {
+    if (animFrame) cancelAnimationFrame(animFrame);
+    const duration = 900;
+    const start = performance.now();
+    const priceEl = document.querySelector('.sim-total-price');
+    if (priceEl) {
+      priceEl.classList.add('animating');
+      setTimeout(() => priceEl.classList.remove('animating'), 600);
+    }
+
+    function step(now) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+      const val = Math.round(from + (to - from) * ease);
+      el.textContent = val.toLocaleString('ja-JP');
+      if (progress < 1) {
+        animFrame = requestAnimationFrame(step);
+      } else {
+        el.textContent = to.toLocaleString('ja-JP');
+        currentTotal = to;
+      }
+    }
+    animFrame = requestAnimationFrame(step);
+  }
+
+  function renderBreakdown(rows) {
+    const bd = document.getElementById('sim-breakdown');
+    if (!bd) return;
+    bd.innerHTML = '';
+    rows.forEach((r, i) => {
+      const row = document.createElement('div');
+      row.className = 'sim-breakdown-row' + (i === 0 ? ' plan-row' : '');
+      row.innerHTML = `<span>${r.label}</span><span>¥${r.price.toLocaleString('ja-JP')}</span>`;
+      bd.appendChild(row);
+    });
+  }
+
+  function updateSimulator() {
+    const { total, rows } = calcTotal();
+    renderBreakdown(rows);
+    const numEl = document.getElementById('sim-total-num');
+    if (numEl) animateCount(currentTotal, total, numEl);
+  }
+
+  // counter buttons — called via onclick attribute
+  function changeCount(btn, delta) {
+    const wrap = btn ? btn.closest('.sim-count-wrap') : null;
+    if (!wrap) return;
+    const valEl = wrap.querySelector('.sim-count-val');
+    if (!valEl) return;
+    let val = parseInt(valEl.textContent) || 1;
+    val = Math.max(1, Math.min(10, val + delta));
+    valEl.textContent = val;
+    // チェックボックスがオンの場合のみ合計を更新
+    const checkbox = wrap.closest('.sim-choice') ? wrap.closest('.sim-choice').querySelector('input[type="checkbox"]') : null;
+    if (checkbox && checkbox.checked) updateSimulator();
+  }
+
+  // toggle count-wrap active class on checkbox change
+  document.querySelectorAll('input[name="opt"]').forEach(inp => {
+    inp.addEventListener('change', () => {
+      const choiceInner = inp.closest('.sim-choice').querySelector('.sim-choice-inner');
+      const wrap = choiceInner ? choiceInner.querySelector('.sim-count-wrap') : null;
+      if (wrap) wrap.classList.toggle('active', inp.checked);
+      updateSimulator();
+    });
+  });
+
+  document.querySelectorAll('input[name="plan"]').forEach(inp => {
+    inp.addEventListener('change', updateSimulator);
+  });
+
+  // initial render
+  updateSimulator();
+
+  // ── APPLICATION FORM ──
+  // シミュレーターは初期表示から常に有効
+  let simDone = true;
+
+  // シミュレーション結果をフォームの選択肢に反映
+  function syncPlanOptions() {
+    const { total, rows } = calcTotal();
+
+    const container = document.getElementById('appform-plan-options');
+    if (!container) return;
+    container.innerHTML = '';
+
+    // シミュレーション結果の選択肢
+    const opt = document.createElement('div');
+    opt.className = 'appform-plan-opt chosen';
+    opt.dataset.price = total;
+    opt.innerHTML = `
+      <div class="appform-plan-opt-dot"></div>
+      <div class="appform-plan-opt-label">${rows.map(r => r.label).join(' ＋ ')}</div>
+      <div class="appform-plan-opt-price">¥${total.toLocaleString('ja-JP')}/月</div>
+    `;
+    container.appendChild(opt);
+
+    // 別途相談の選択肢
+    const opt2 = document.createElement('div');
+    opt2.className = 'appform-plan-opt';
+    opt2.dataset.price = '別途相談';
+    opt2.innerHTML = `
+      <div class="appform-plan-opt-dot"></div>
+      <div class="appform-plan-opt-label">内容を変えて別途ご相談したい</div>
+      <div class="appform-plan-opt-price" style="font-size:0.65rem;font-family:'Noto Sans JP',sans-serif;color:var(--gray);">要相談</div>
+    `;
+    container.appendChild(opt2);
+
+    // クリックで選択切り替え
+    [opt, opt2].forEach(el => {
+      el.addEventListener('click', () => {
+        [opt, opt2].forEach(e => e.classList.remove('chosen'));
+        el.classList.add('chosen');
+        const txt = document.getElementById('appform-plan-text');
+        if (txt) {
+          txt.textContent = el.dataset.price === '別途相談'
+            ? '内容を変えて別途ご相談'
+            : `¥${parseInt(el.dataset.price).toLocaleString('ja-JP')}/月`;
+          txt.classList.add('selected');
+        }
+      });
+    });
+
+    // 表示テキスト更新
+    const txt = document.getElementById('appform-plan-text');
+    if (txt) {
+      txt.textContent = `¥${total.toLocaleString('ja-JP')}/月（シミュレーション結果）`;
+      txt.classList.add('selected');
+    }
+  }
+
+  // シミュレーターの変更時にフォームも更新（既存のchangeイベントに追加）
+  document.querySelectorAll('input[name="plan"], input[name="opt"]').forEach(inp => {
+    inp.addEventListener('change', () => { if (simDone) syncPlanOptions(); });
+  });
+
+  // 料金欄クリック
+  function handlePlanClick() {
+    if (!simDone) {
+      document.getElementById('appform-popup').classList.add('active');
+      return;
+    }
+    syncPlanOptions();
+  }
+
+  // ポップアップ外クリックで閉じる
+  document.getElementById('appform-popup').addEventListener('click', function(e) {
+    if (e.target === this) this.classList.remove('active');
+  });
+
+  // バリデーション
+  function validateForm() {
+    let ok = true;
+    const required = [
+      { id: 'f-sei', label: '姓' },
+      { id: 'f-mei', label: '名' },
+      { id: 'f-tel', label: '電話番号' },
+      { id: 'f-email', label: 'メールアドレス' },
+    ];
+    required.forEach(({ id }) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      if (!el.value.trim()) { el.classList.add('error'); ok = false; }
+      else el.classList.remove('error');
+    });
+    // 連絡方法
+    const contactChecked = document.querySelectorAll('input[name="contact"]:checked').length > 0;
+    if (!contactChecked) ok = false;
+    // プラン選択チェック
+    if (!simDone) {
+      document.getElementById('appform-popup').classList.add('active');
+      return false;
+    }
+    // プライバシーポリシー同意チェック
+    const privacyEl = document.getElementById('f-privacy');
+    const privacyErr = document.getElementById('appform-privacy-error');
+    const privacyLabel = document.getElementById('appform-privacy-label');
+    if (!privacyEl || !privacyEl.checked) {
+      if (privacyErr) {
+        privacyErr.classList.remove('show');
+        void privacyErr.offsetWidth; // reflow for re-animation
+        privacyErr.classList.add('show');
+      }
+      if (privacyLabel) privacyLabel.classList.add('error-border');
+      ok = false;
+    } else {
+      if (privacyErr) privacyErr.classList.remove('show');
+      if (privacyLabel) privacyLabel.classList.remove('error-border');
+    }
+    return ok;
+  }
+
+  // プライバシーポリシーモーダル
+  function openPrivacy(e) {
+    if (e) e.preventDefault();
+    document.getElementById('privacy-modal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closePrivacy() {
+    document.getElementById('privacy-modal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  function closePrivacyOutside(e) {
+    if (e.target === document.getElementById('privacy-modal')) closePrivacy();
+  }
+  // 「同意して閉じる」でチェックも自動ON
+  function agreePrivacy() {
+    const cb = document.getElementById('f-privacy');
+    if (cb) cb.checked = true;
+    const err = document.getElementById('appform-privacy-error');
+    const lbl = document.getElementById('appform-privacy-label');
+    if (err) err.classList.remove('show');
+    if (lbl) lbl.classList.remove('error-border');
+    closePrivacy();
+  }
+  // チェック時にエラー解除
+  const privacyCb = document.getElementById('f-privacy');
+  if (privacyCb) {
+    privacyCb.addEventListener('change', () => {
+      if (privacyCb.checked) {
+        const err = document.getElementById('appform-privacy-error');
+        const lbl = document.getElementById('appform-privacy-label');
+        if (err) err.classList.remove('show');
+        if (lbl) lbl.classList.remove('error-border');
+      }
+    });
+  }
+
+  // 送信
+  function handleSubmit() {
+    if (!validateForm()) return;
+    // 成功表示
+    const body = document.querySelector('.appform-body');
+    if (!body) return;
+    body.style.transition = 'opacity .3s';
+    body.style.opacity = '0';
+    setTimeout(() => {
+      body.innerHTML = `
+        <div style="text-align:center;padding:32px 16px;">
+          <div style="font-size:2.5rem;margin-bottom:14px;">✅</div>
+          <div style="font-size:1rem;font-weight:900;color:var(--cyan);margin-bottom:8px;letter-spacing:1px;">お申込みを受け付けました！</div>
+          <div style="font-size:0.75rem;color:var(--gray);line-height:1.9;">
+            ご入力いただいたメールアドレス・お電話番号に<br>
+            2営業日以内にご連絡いたします。<br>
+            どうぞお楽しみに！
+          </div>
+        </div>
+      `;
+      body.style.opacity = '1';
+    }, 300);
+  }
+
+  // input error クリア
+  document.querySelectorAll('.appform-input').forEach(el => {
+    el.addEventListener('input', () => el.classList.remove('error'));
+  });
+</script>
+</body>
+</html>
