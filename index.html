@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CRAFTON チラシ</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue-deep: #0a0f2e;
+    --blue-mid:  #0d1a4a;
+    --blue-navy: #19448e;
+    --cyan:      #00d4ff;
+    --cyan-dim:  rgba(0,212,255,0.18);
+    --white:     #ffffff;
+    --gray:      rgba(255,255,255,0.65);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  /* ── A4 wrapper ── */
+  body {
+    background: #1a1a2e;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 32px 16px;
+    font-family: 'Noto Sans JP', sans-serif;
+  }
+
+  .flyer {
+    width: 794px;          /* A4 @ 96dpi */
+    min-height: 1123px;
+    background: var(--blue-deep);
+    position: relative;
+    overflow: hidden;
+    color: var(--white);
+  }
+
+  /* ── animated grid ── */
+  .grid-bg {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(0,212,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,212,255,0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+    animation: gridScroll 25s linear infinite;
+    pointer-events: none;
+  }
+  @keyframes gridScroll {
+    0%   { background-position: 0 0; }
+    100% { background-position: 48px 48px; }
+  }
+
+  /* ── radial glows ── */
+  .glow-left {
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(ellipse, rgba(25,68,142,0.55) 0%, transparent 70%);
+    top: -150px; left: -200px;
+    pointer-events: none;
+  }
+  .glow-right {
+    position: absolute;
+    width: 500px; height: 500px;
+    background: radial-gradient(ellipse, rgba(0,212,255,0.12) 0%, transparent 70%);
+    top: 50px; right: -180px;
+    pointer-events: none;
+  }
+  .glow-bottom {
+    position: absolute;
+    width: 700px; height: 400px;
+    background: radial-gradient(ellipse, rgba(25,68,142,0.4) 0%, transparent 70%);
+    bottom: -100px; left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+
+  /* ── floating particles ── */
+  .particles { position: absolute; inset: 0; pointer-events: none; }
+  .dot {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--cyan);
+    animation: floatUp linear infinite;
+    opacity: 0;
+  }
+  @keyframes floatUp {
+    0%   { transform: translateY(100%) translateX(0); opacity: 0; }
+    10%  { opacity: 0.8; }
+    90%  { opacity: 0.5; }
+    100% { transform: translateY(-80px) translateX(30px); opacity: 0; }
+  }
+
+  /* ── top bar ── */
+  .top-bar {
+    position: relative; z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 36px;
+    border-bottom: 1px solid rgba(0,212,255,0.2);
+    background: rgba(10,15,46,0.6);
+    backdrop-filter: blur(8px);
+  }
+  .logo {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 900;
+    letter-spacing: 3px;
+    color: var(--cyan);
+  }
+  .logo span { color: var(--white); }
+  .badge {
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    color: var(--cyan);
+    border: 1px solid rgba(0,212,255,0.45);
+    padding: 4px 14px;
+    border-radius: 50px;
+    background: rgba(0,212,255,0.08);
+  }
+
+  /* ── hero ── */
+  .hero {
+    position: relative; z-index: 2;
+    text-align: center;
+    padding: 44px 36px 36px;
+  }
+  .hero-eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 4px;
+    color: var(--cyan);
+    margin-bottom: 14px;
+    opacity: 0.85;
+  }
+  .hero-title {
+    font-size: 3.6rem;
+    font-weight: 900;
+    line-height: 1.12;
+    margin-bottom: 10px;
+    text-shadow: 0 0 40px rgba(0,212,255,0.25);
+  }
+  .hero-title .line2 {
+    background: linear-gradient(135deg, var(--cyan) 0%, #6ec6ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.8rem;
+    letter-spacing: 6px;
+    display: block;
+    margin-top: 6px;
+  }
+  .hero-sub {
+    font-size: 0.88rem;
+    color: var(--gray);
+    line-height: 1.9;
+    margin-top: 14px;
+  }
+
+  /* ── catch copies ── */
+  .catches {
+    position: relative; z-index: 2;
+    display: flex;
+    gap: 10px;
+    padding: 0 36px 28px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .catch-chip {
+    background: rgba(0,212,255,0.1);
+    border: 1px solid rgba(0,212,255,0.35);
+    color: var(--cyan);
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 7px 18px;
+    border-radius: 50px;
+    letter-spacing: 0.5px;
+  }
+
+  /* ── divider ── */
+  .divider {
+    position: relative; z-index: 2;
+    margin: 0 36px 28px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0,212,255,0.4), transparent);
+  }
+
+  /* ── price hero ── */
+  .price-hero {
+    position: relative; z-index: 2;
+    text-align: center;
+    padding: 0 36px 28px;
+  }
+  .price-label {
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    color: var(--gray);
+    margin-bottom: 8px;
+  }
+  .price-main {
+    font-size: 4.5rem;
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1;
+  }
+  .price-main .yen {
+    font-size: 2rem;
+    vertical-align: super;
+    margin-right: 4px;
+    color: var(--cyan);
+  }
+  .price-main .per {
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--gray);
+    margin-left: 8px;
+  }
+  .price-note {
+    font-size: 0.8rem;
+    color: var(--cyan);
+    margin-top: 8px;
+    letter-spacing: 1px;
+  }
+
+  /* ── 3 points ── */
+  .points {
+    position: relative; z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    padding: 0 36px 28px;
+  }
+  .point-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(0,212,255,0.2);
+    border-radius: 10px;
+    padding: 18px 16px;
+    text-align: center;
+    transition: border-color 0.3s;
+  }
+  .point-icon {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: rgba(0,212,255,0.15);
+    border: 1px solid rgba(0,212,255,0.4);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 10px;
+    font-size: 1.1rem;
+  }
+  .point-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+  .point-body {
+    font-size: 0.72rem;
+    color: var(--gray);
+    line-height: 1.7;
+  }
+
+  /* ── plans table ── */
+  .plans-section {
+    position: relative; z-index: 2;
+    padding: 0 36px 28px;
+  }
+  .section-label {
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    color: var(--cyan);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(0,212,255,0.4), transparent);
+  }
+
+  .plans-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 12px;
+  }
+  .plan-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(0,212,255,0.2);
+    border-radius: 10px;
+    padding: 16px 18px;
+  }
+  .plan-card.featured {
+    border-color: rgba(0,212,255,0.6);
+    background: rgba(0,212,255,0.07);
+    position: relative;
+    overflow: hidden;
+  }
+  .plan-card.featured::before {
+    content: 'おすすめ';
+    position: absolute;
+    top: 10px; right: -20px;
+    background: var(--cyan);
+    color: #000;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 3px 28px;
+    letter-spacing: 1px;
+    transform: rotate(35deg);
+  }
+  .plan-name {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--cyan);
+    margin-bottom: 6px;
+    letter-spacing: 1px;
+  }
+  .plan-price {
+    font-size: 1.7rem;
+    font-weight: 900;
+    color: var(--white);
+    margin-bottom: 10px;
+  }
+  .plan-price small {
+    font-size: 0.75rem;
+    color: var(--gray);
+    font-weight: 400;
+  }
+  .plan-items {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .plan-items li {
+    font-size: 0.72rem;
+    color: var(--gray);
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    line-height: 1.5;
+  }
+  .plan-items li::before {
+    content: '✦';
+    color: var(--cyan);
+    font-size: 0.55rem;
+    margin-top: 3px;
+    flex-shrink: 0;
+  }
+
+  /* ── options ── */
+  .options-section {
+    position: relative; z-index: 2;
+    padding: 0 36px 28px;
+  }
+  .options-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+  .option-chip {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px;
+    padding: 12px 10px;
+    text-align: center;
+  }
+  .option-name {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 4px;
+    line-height: 1.4;
+  }
+  .option-price {
+    font-size: 0.68rem;
+    color: var(--cyan);
+  }
+
+  /* ── cases row ── */
+  .cases-section {
+    position: relative; z-index: 2;
+    padding: 0 36px 28px;
+  }
+  .cases-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .case-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(0,212,255,0.15);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .case-img {
+    width: 100%; height: 80px;
+    background: linear-gradient(135deg, rgba(25,68,142,0.6), rgba(0,212,255,0.15));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 2px;
+    border-bottom: 1px solid rgba(0,212,255,0.1);
+  }
+  .case-info {
+    padding: 10px 14px;
+  }
+  .case-title {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 3px;
+  }
+  .case-desc {
+    font-size: 0.68rem;
+    color: var(--gray);
+    line-height: 1.5;
+  }
+
+  /* ── bottom CTA ── */
+  .cta-section {
+    position: relative; z-index: 2;
+    padding: 0 36px 0;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    align-items: center;
+  }
+  .cta-left h3 {
+    font-size: 1.3rem;
+    font-weight: 900;
+    line-height: 1.4;
+    margin-bottom: 10px;
+  }
+  .cta-left h3 .highlight {
+    background: linear-gradient(135deg, var(--cyan), #6ec6ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .cta-contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .cta-contact-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.78rem;
+    color: var(--gray);
+  }
+  .cta-contact-row .icon {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: rgba(0,212,255,0.15);
+    border: 1px solid rgba(0,212,255,0.35);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.65rem;
+    flex-shrink: 0;
+  }
+  .cta-contact-row strong { color: var(--white); }
+
+  .qr-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .qr-placeholder {
+    width: 90px; height: 90px;
+    background: var(--white);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  /* simple QR-like pattern */
+  .qr-placeholder::before {
+    content: '';
+    position: absolute; inset: 6px;
+    background:
+      repeating-linear-gradient(0deg,   #000 0px,#000 4px,#fff 4px,#fff 8px),
+      repeating-linear-gradient(90deg,  #000 0px,#000 4px,#fff 4px,#fff 8px);
+    opacity: 0.18;
+    border-radius: 4px;
+  }
+  .qr-placeholder .qr-corner {
+    position: absolute;
+    width: 20px; height: 20px;
+    border: 3px solid #000;
+    border-radius: 2px;
+  }
+  .qr-placeholder .qr-corner.tl { top: 8px; left: 8px; border-right: none; border-bottom: none; }
+  .qr-placeholder .qr-corner.tr { top: 8px; right: 8px; border-left: none; border-bottom: none; }
+  .qr-placeholder .qr-corner.bl { bottom: 8px; left: 8px; border-right: none; border-top: none; }
+  .qr-inner { width: 8px; height: 8px; background: #000; border-radius: 1px; position: absolute; top: 14px; left: 14px; }
+  .qr-inner.tr { top: 14px; left: auto; right: 14px; }
+  .qr-inner.bl { top: auto; bottom: 14px; left: 14px; }
+  .qr-label { font-size: 0.62rem; color: var(--gray); letter-spacing: 1px; text-align: center; }
+
+  /* ── footer ── */
+  .footer-bar {
+    position: relative; z-index: 2;
+    margin-top: 24px;
+    padding: 14px 36px;
+    border-top: 1px solid rgba(0,212,255,0.15);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(10,15,46,0.5);
+  }
+  .footer-bar .addr {
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.6;
+  }
+  .footer-bar .hours {
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.4);
+    text-align: right;
+    line-height: 1.6;
+  }
+
+  /* ── print button (screen only) ── */
+  .print-btn {
+    position: fixed;
+    bottom: 24px; right: 24px;
+    background: var(--cyan);
+    color: #000;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 20px rgba(0,212,255,0.35);
+    z-index: 999;
+  }
+  .print-btn:hover { opacity: 0.9; transform: translateY(-2px); transition: all .2s; }
+  @media print {
+    body { background: none; padding: 0; }
+    .print-btn { display: none; }
+    .flyer { width: 210mm; min-height: 297mm; }
+    .grid-bg, .dot { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<button class="print-btn" onclick="window.print()">🖨️ 印刷 / PDF保存</button>
+
+<div class="flyer">
+  <!-- backgrounds -->
+  <div class="grid-bg"></div>
+  <div class="glow-left"></div>
+  <div class="glow-right"></div>
+  <div class="glow-bottom"></div>
+  <div class="particles" id="particles"></div>
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <div class="logo">CRAFT<span>ON</span></div>
+    <div class="badge">B型就労継続支援事業所</div>
+    <div style="font-size:0.7rem;color:var(--gray);letter-spacing:1px">大阪市平野区</div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow">DIGITAL CREATION SERVICE</div>
+    <div class="hero-title">
+      月々7,000円で<br>プロのホームページ
+      <span class="line2">CRAFTON</span>
+    </div>
+    <div class="hero-sub">
+      デジタルスキルで、あなたのビジネスの可能性を広げる。<br>
+      Web制作・SNS運用・動画編集・SEO対策まで、すべておまかせ。
+    </div>
+  </div>
+
+  <!-- CATCH COPIES -->
+  <div class="catches">
+    <div class="catch-chip">月々7,000円で制作＋管理が全部込み</div>
+    <div class="catch-chip">お店のファンをネットで増やそう</div>
+    <div class="catch-chip">制作費0円・毎月7,000円で全部おまかせ</div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- PRICE HERO -->
+  <div class="price-hero">
+    <div class="price-label">月額料金（税込）</div>
+    <div class="price-main">
+      <span class="yen">¥</span>7,000<span class="per">/ 月</span>
+    </div>
+    <div class="price-note">✦ 初期費用・制作費 0円 ✦ レンタルサーバー込み ✦ 無料ドメイン付き</div>
+  </div>
+
+  <!-- 3 POINTS -->
+  <div class="points">
+    <div class="point-card">
+      <div class="point-icon">🌐</div>
+      <div class="point-title">月1回<br>無料更新</div>
+      <div class="point-body">毎月1回、写真・文章・お知らせなどを無料で更新。常に最新の情報を発信できます。</div>
+    </div>
+    <div class="point-card">
+      <div class="point-icon">🔒</div>
+      <div class="point-title">サーバー・<br>ドメイン込み</div>
+      <div class="point-body">レンタルサーバーと独自ドメインの取得・管理も込み。面倒な設定は一切不要です。</div>
+    </div>
+    <div class="point-card">
+      <div class="point-icon">📱</div>
+      <div class="point-title">SNS運用<br>同時対応</div>
+      <div class="point-body">インスタ＆TikTokへの同時投稿代行も対応。Webとセットで集客力を最大化。</div>
+    </div>
+  </div>
+
+  <!-- PLANS -->
+  <div class="plans-section">
+    <div class="section-label">PLAN &amp; PRICING</div>
+    <div class="plans-grid">
+      <!-- standard -->
+      <div class="plan-card">
+        <div class="plan-name">STANDARD PLAN</div>
+        <div class="plan-price">¥7,000<small> / 月</small></div>
+        <ul class="plan-items">
+          <li>ホームページ制作・維持管理</li>
+          <li>月1回無料コンテンツ更新</li>
+          <li>レンタルサーバー利用料込み</li>
+          <li>無料ドメイン付き</li>
+          <li>お問い合わせフォーム設置</li>
+          <li>スマートフォン対応（レスポンシブ）</li>
+        </ul>
+      </div>
+      <!-- featured -->
+      <div class="plan-card featured">
+        <div class="plan-name">PREMIUM PLAN</div>
+        <div class="plan-price">¥13,000<small> / 月〜</small></div>
+        <ul class="plan-items">
+          <li>スタンダードの全内容込み</li>
+          <li>GoogleマップMEO対策</li>
+          <li>SEO対策（検索上位表示）</li>
+          <li>インスタ＆TikTok同時投稿代行（週1回）</li>
+          <li>月2回以降の更新 ＋1,000円/回</li>
+          <li>Google広告運用アドバイス</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- OPTIONS -->
+  <div class="options-section">
+    <div class="section-label">OPTIONS</div>
+    <div class="options-grid">
+      <div class="option-chip">
+        <div class="option-name">独自ドメイン<br>取得設定</div>
+        <div class="option-price">別途相談</div>
+      </div>
+      <div class="option-chip">
+        <div class="option-name">月2回目以降<br>の更新</div>
+        <div class="option-price">＋1,000円 / 回</div>
+      </div>
+      <div class="option-chip">
+        <div class="option-name">Googleマップ<br>MEO＋SEO</div>
+        <div class="option-price">＋1,000円 / 月</div>
+      </div>
+      <div class="option-chip">
+        <div class="option-name">SNS運用代行<br>週1プラン</div>
+        <div class="option-price">＋5,000円 / 月</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CASES -->
+  <div class="cases-section">
+    <div class="section-label">SERVICE CASE</div>
+    <div class="cases-grid">
+      <div class="case-card">
+        <div class="case-img">制作事例 イメージ①</div>
+        <div class="case-info">
+          <div class="case-title">飲食店様 ホームページ</div>
+          <div class="case-desc">メニュー・アクセス・SNSリンクを整理し、Googleからの流入が増加。月1回の更新で常に新鮮な情報を発信。</div>
+        </div>
+      </div>
+      <div class="case-card">
+        <div class="case-img">制作事例 イメージ②</div>
+        <div class="case-info">
+          <div class="case-title">サロン様 SNS＋Web連動</div>
+          <div class="case-desc">インスタ・TikTok同時投稿代行とMEO対策をセットで導入。新規予約数が大幅アップ。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <div class="cta-left">
+      <h3>まずは<span class="highlight">無料相談</span>から<br>お気軽にどうぞ！</h3>
+      <div class="cta-contacts">
+        <div class="cta-contact-row">
+          <div class="icon">📞</div>
+          <div><strong>06-6777-2104</strong>　月〜土 9:00〜18:00</div>
+        </div>
+        <div class="cta-contact-row">
+          <div class="icon">✉</div>
+          <div><strong>crafton-osaka@example.com</strong></div>
+        </div>
+        <div class="cta-contact-row">
+          <div class="icon">🌐</div>
+          <div>Webサイトからもお問い合わせいただけます</div>
+        </div>
+        <div class="cta-contact-row">
+          <div class="icon">💬</div>
+          <div>LINE公式アカウントでも受付中</div>
+        </div>
+      </div>
+    </div>
+    <div class="qr-box">
+      <div class="qr-placeholder">
+        <div class="qr-corner tl"></div>
+        <div class="qr-corner tr"></div>
+        <div class="qr-corner bl"></div>
+        <div class="qr-inner"></div>
+        <div class="qr-inner tr"></div>
+        <div class="qr-inner bl"></div>
+      </div>
+      <div class="qr-label">Webサイト / LINE<br>はこちら</div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-bar">
+    <div class="addr">
+      📍 大阪市平野区加美北4-9-11-4号室<br>
+      CRAFTON B型就労継続支援事業所
+    </div>
+    <div class="hours">
+      営業時間 / 月〜土 9:00〜18:00<br>
+      © 2026 CRAFTON All Rights Reserved.
+    </div>
+  </div>
+
+</div><!-- /flyer -->
+
+<script>
+  // floating particles
+  const c = document.getElementById('particles');
+  for (let i = 0; i < 30; i++) {
+    const d = document.createElement('div');
+    d.className = 'dot';
+    const size = Math.random() * 3 + 1;
+    d.style.cssText = `
+      width:${size}px; height:${size}px;
+      left:${Math.random()*100}%;
+      bottom:${Math.random()*20}%;
+      animation-duration:${Math.random()*20+12}s;
+      animation-delay:${Math.random()*10}s;
+      background:${Math.random()>.5?'#00d4ff':'#7c3aed'};
+    `;
+    c.appendChild(d);
+  }
+</script>
+</body>
+</html>
